@@ -1,9 +1,15 @@
+// Package sdlib contains utility functions for working with sd.
 package sdlib
 
 import "os"
 
-var serviceDiscoveryURL = os.Getenv("SERVICE_DISCOVERY_SERVICE_HOST")
-var ip = os.Getenv("MY_POD_IP")
+var serviceDiscoveryURL string
+var ip string
+
+func init() {
+	serviceDiscoveryURL = os.Getenv("SERVICE_DISCOVERY_SERVICE_HOST")
+	ip = os.Getenv("MY_POD_IP")
+}
 
 // Path ...
 type Path struct {
@@ -19,7 +25,7 @@ type Manifest struct {
 	Version  string  `json:"version"`
 }
 
-// Endpoint
+// Endpoint is the structure for the output
 type Endpoint struct {
 	Instance string `json:"instance"`
 	Hostname string `json:"hostname"`
